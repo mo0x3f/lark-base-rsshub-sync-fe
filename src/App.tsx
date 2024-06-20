@@ -11,14 +11,14 @@ export default function App() {
     useEffect(() => {
         bitable.getConfig().then(config => {
             console.log('pre sync config ', config)
-            setValue(config?.value | {});
+            setValue(config?.value || {});
             const rssUrl = config?.['rss-url'] || '';
             console.log('rss url: ', rssUrl)
             form.setFieldsValue({ 'rss-url': rssUrl }); // 手动更新表单值
         });
     }, [])
 
-    const handleSaveConfig = (config) => {
+    const handleSaveConfig = (config: any) => {
         // TODO: handle submit check: 1. url validator
         console.log('config', config);
         bitable.saveConfigAndGoNext(config);
